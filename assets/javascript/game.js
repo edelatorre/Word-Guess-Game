@@ -6,13 +6,13 @@ var secretBand = bands[Math.floor(Math.random() * bands.length)];
 var letters = [];
 
 function isLetter(str) {
-  if (str.length === 1 && str.match(/[a-z]/i)){
-    return true;
+    if (str.length === 1 && str.match(/[a-z]/i)){
+        return true;
     }else{
         return false;
     };
 };
-
+//function to know if the user enters a letter and to save them to an array so they don´t repeat
 function saveLetter(entrada){    
     if(isLetter(entrada) && letters.indexOf(entrada) <  0){
         letters.push(entrada);
