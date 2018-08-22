@@ -63,6 +63,10 @@ document.onkeyup = function(event) {
 
     saveLetter(letter);
     hangman(letter);
-    
+
+    //Revisar lo que sucede cuando se oprime la barra espaciadora
+    console.log("total letras: " +letters.length);
+    console.log("letras atinadas: "+letrasCorrectas);
+    console.log("letras falladas: "+(letters.length-letrasCorrectas));
 };
 
