@@ -24,7 +24,7 @@ function saveLetter(entrada){
     }
 };
 
-//function to create the blank spaces the user has to fill
+//function to create an array with the blank spaces the user has to fill
 function dibujarEspacios(banda){
     var espacios = [];
     for(var i = 0; i < banda.length; i ++){
@@ -41,10 +41,10 @@ function dibujarEspacios(banda){
 var blanksToFill = dibujarEspacios(secretBand);
 var letrasCorrectas=0;
 
-//function that decides if the word is correct
+//function that decides if the word is correct and replaced the blanksToFill array
 function hangman(char){
     
-    if(secretBand.indexOf(char)>=0){
+    if(secretBand.indexOf(char)>=0 && isLetter(char)){
         for(var j=0; j < secretBand.length; j++){
             if(secretBand[j] === char ){
                 blanksToFill[j]=char;
@@ -56,17 +56,19 @@ function hangman(char){
     console.log(blanksToFill);
     console.log(letrasCorrectas);
     return letrasCorrectas;
-}
+};
 
+
+   
 document.onkeyup = function(event) {
     var letter = event.key.toLowerCase();
 
     saveLetter(letter);
     hangman(letter);
 
-    //Revisar lo que sucede cuando se oprime la barra espaciadora
-    console.log("total letras: " +letters.length);
-    console.log("letras atinadas: "+letrasCorrectas);
-    console.log("letras falladas: "+(letters.length-letrasCorrectas));
+
+    console.log("total letters: " +letters.length);
+    console.log("# of correct letters: "+letrasCorrectas);
+    console.log("# of wrong letters: "+(letters.length-letrasCorrectas));
 };
 
