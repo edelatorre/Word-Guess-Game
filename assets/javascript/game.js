@@ -39,9 +39,11 @@ function dibujarEspacios(banda){
 }
 
 var blanksToFill = dibujarEspacios(secretBand);
+var letrasCorrectas=0;
 
 //function that decides if the word is correct
 function hangman(char){
+    
     if(secretBand.indexOf(char)>=0){
         for(var j=0; j < secretBand.length; j++){
             if(secretBand[j] === char ){
@@ -49,9 +51,11 @@ function hangman(char){
                 
             }
         }
-
+        letrasCorrectas++;
     }
     console.log(blanksToFill);
+    console.log(letrasCorrectas);
+    return letrasCorrectas;
 }
 
 document.onkeyup = function(event) {
