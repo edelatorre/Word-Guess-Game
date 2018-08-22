@@ -24,6 +24,17 @@ function saveLetter(entrada){
     }
 };
 
+function dibujarEspacios(banda){
+    var espacios = '';
+    for(var i = 0; i < banda.length; i ++){
+        espacios += '_ ';
+
+    }
+    console.log(espacios);
+}
+
+dibujarEspacios(secretBand);
+
 document.onkeyup = function(event) {
     var letter = event.key.toLowerCase();
 
