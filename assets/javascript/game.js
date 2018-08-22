@@ -24,21 +24,41 @@ function saveLetter(entrada){
     }
 };
 
+//function to create the blank spaces the user has to fill
 function dibujarEspacios(banda){
-    var espacios = '';
+    var espacios = [];
     for(var i = 0; i < banda.length; i ++){
-        espacios += '_ ';
-
+        if(isLetter(banda[i])){
+            espacios.push('_');
+        }else{
+            espacios.push(' ');
+        }
     }
-    console.log(espacios);
+    //console.log(espacios);
+    return espacios;
 }
 
-dibujarEspacios(secretBand);
+var blanksToFill = dibujarEspacios(secretBand);
+
+//function that decides if the word is correct
+function hangman(char){
+    if(secretBand.indexOf(char)>=0){
+        for(var j=0; j < secretBand.length; j++){
+            if(secretBand[j] === char ){
+                blanksToFill[j]=char;
+                
+            }
+        }
+
+    }
+    console.log(blanksToFill);
+}
 
 document.onkeyup = function(event) {
     var letter = event.key.toLowerCase();
 
     saveLetter(letter);
+    hangman(letter);
     
 };
 
