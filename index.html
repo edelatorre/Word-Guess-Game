@@ -23,10 +23,14 @@
             font-family: sans-serif;
             text-align: justify;
         }
-        #firstP{
-            margin-top:25px;
+        div .col{
+            border-style: solid;
         }
-        
+
+        #blanks,#chosenLetters{
+            font-size: 3vw;
+        }
+
     </style>
 
 </head>
@@ -44,19 +48,28 @@
         </div>
     </nav>
 
+    
 
     <!-- Page Content -->
     <div class="container">
+        <br>
+        <h2>Press any key to get started!</h2>
+        <hr>
         <div class="row align-items-center">
             <div class="col">
-                One of three columns
+                <h3>Try to guess which band it is!</h3>
+                <p>You can only miss 10 times</p>
+                <div id="blanks"></div> 
+                <br>
+                <p>Selected letters:</p>
+                <div id="chosenLetters"></div>
+                <hr>
+                <p id="remainShots"></p>  
             </div>
-            <div class="col">
-                One of three columns
+            <div class="col" id="result">
+ 
             </div>
-            <div class="col">
-                One of three columns
-            </div>
+    
         </div>
     </div>    
 

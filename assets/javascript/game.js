@@ -4,6 +4,23 @@ var bands = ['the killers','coldplay','one republic'];
 var secretBand = bands[Math.floor(Math.random() * bands.length)];
 //In letters we are saving all the letters that have been clicked so we don´t repeat
 var letters = [];
+//variable that saves the array with the blanck spaces
+var blanksToFill = dibujarEspacios(secretBand);
+//Variable that counts the letters that are correct
+var letrasCorrectas=0;
+//counter for the wins
+var wins = 0;
+//counter for the loses
+var loses = 0;
+
+//DOM
+var blanks = document.getElementById("blanks");
+var wrong = document.getElementById("chosenLetters");
+var remain = document.getElementById("remainShots");
+var result = document.getElementById("result");
+
+blanks.textContent = blanksToFill.join(" ");
+//blanks.innerHTML = blanksToFill.join(" ");
 
 function isLetter(str) {
     if (str.length === 1 && str.match(/[a-z]/i)){
@@ -17,10 +34,18 @@ function saveLetter(entrada){
     if(isLetter(entrada) && letters.indexOf(entrada) <  0){
         letters.push(entrada);
         console.log(letters);
+        //it writes on the id = wrongLetters on the HTML
+        wrong.textContent = letters;
+        wrong.style.background = "white";
+        
     }else if(letters.indexOf(entrada) >= 0){
         console.log("You already enter that letter");
+        wrong.textContent = "You already enter that letter";
+        wrong.style.background = "yellow";
     }else{
         console.log("You didn´t enter a valid key");
+        wrong.textContent = "You didn´t enter a valid key";
+        wrong.style.background = "yellow";
     }
 };
 
@@ -29,17 +54,17 @@ function dibujarEspacios(banda){
     var espacios = [];
     for(var i = 0; i < banda.length; i ++){
         if(isLetter(banda[i])){
-            espacios.push('_');
+            espacios.push('__');
         }else{
-            espacios.push(' ');
+            espacios.push('[ ]');
         }
     }
     //console.log(espacios);
     return espacios;
 }
 
-var blanksToFill = dibujarEspacios(secretBand);
-var letrasCorrectas=0;
+
+
 
 //function that decides if the word is correct and replaced the blanksToFill array
 function hangman(char){
@@ -51,24 +76,53 @@ function hangman(char){
                 
             }
         }
-        letrasCorrectas++;
+        if(letters.indexOf(char) < 0){
+            result.innerHTML = "<h1>CORRECT</h1>";
+            result.style.background = "green";
+            letrasCorrectas++;
+        }
+    }else{
+        result.innerHTML = "<h1>WRONG</h1>";
+        result.style.background = "red";
     }
+
+    // prints how the word is forming
     console.log(blanksToFill);
-    console.log(letrasCorrectas);
+    blanks.textContent =  blanksToFill.join(" ");
+    //
+    //console.log(letrasCorrectas);
     return letrasCorrectas;
 };
 
 
-   
+
+
+
+//THE GAME STARTS   
 document.onkeyup = function(event) {
     var letter = event.key.toLowerCase();
 
-    saveLetter(letter);
     hangman(letter);
-
+    saveLetter(letter);
 
     console.log("total letters: " +letters.length);
     console.log("# of correct letters: "+letrasCorrectas);
     console.log("# of wrong letters: "+(letters.length-letrasCorrectas));
+    remain.textContent = "Remaining Shots: " + (10-(letters.length-letrasCorrectas));
+
+
+   if((10-(letters.length-letrasCorrectas)) === 0){
+    result.innerHTML = "<h1>LOSER</h1>";
+    result.style.background = "red";
+   }
+
+   if(blanksToFill.indexOf('__')<0){
+        result.innerHTML = "<h1>YOU WON</h1>";
+        result.style.background = "blue";       
+        console.log("YOU WON");
+       
+   }
+
+ 
 };
 
