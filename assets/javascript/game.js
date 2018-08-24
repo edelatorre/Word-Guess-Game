@@ -58,8 +58,8 @@ function dibujarEspacios(banda){
         if(isLetter(banda[i])){
             espacios.push('__');
         }else{
-            //espacios.push('[ ]');
-            espacios.push('&blank;');
+            espacios.push('[ ]');
+            //espacios.push('&blank;');
         }
     }
     //console.log(espacios);
