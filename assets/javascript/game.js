@@ -18,6 +18,8 @@ var blanks = document.getElementById("blanks");
 var wrong = document.getElementById("chosenLetters");
 var remain = document.getElementById("remainShots");
 var result = document.getElementById("result");
+var ganadas = document.getElementById("wins");
+var perdidas = document.getElementById("loses");
 
 blanks.textContent = blanksToFill.join(" ");
 //blanks.innerHTML = blanksToFill.join(" ");
@@ -62,7 +64,7 @@ function dibujarEspacios(banda){
     //console.log(espacios);
     return espacios;
 }
-
+ 
 
 
 
@@ -94,6 +96,14 @@ function hangman(char){
     return letrasCorrectas;
 };
 
+function reset(ganador,perdedor){
+    secretBand = bands[Math.floor(Math.random() * bands.length)];
+    blanksToFill = dibujarEspacios(secretBand);
+    letrasCorrectas=0;
+    letters = [];
+    wins += ganador;
+    loses += perdedor; 
+}
 
 
 
@@ -112,16 +122,22 @@ document.onkeyup = function(event) {
 
 
    if((10-(letters.length-letrasCorrectas)) === 0){
-    result.innerHTML = "<h1>LOSER</h1>";
-    result.style.background = "red";
+        result.innerHTML = "<h1>LOSER</h1><h4>Click another key to restart</h4>";
+        result.style.background = "red";
+        reset(0,1);
    }
 
    if(blanksToFill.indexOf('__')<0){
-        result.innerHTML = "<h1>YOU WON</h1>";
+        result.innerHTML = "<h1>YOU WON</h1><h4>Click another key to restart</h4>";
         result.style.background = "blue";       
         console.log("YOU WON");
-       
+        reset(1,0);
+
    }
+   console.log("wins: " + wins);
+   ganadas.textContent = "wins: " + wins;
+   console.log('loses: '+ loses);
+   perdidas.textContent = 'loses: '+ loses;
 
  
 };
