@@ -21,7 +21,7 @@ var result = document.getElementById("result");
 var ganadas = document.getElementById("wins");
 var perdidas = document.getElementById("loses");
 
-blanks.textContent = blanksToFill.join(" ");
+blanks.innerHTML = blanksToFill.join(" ");
 //blanks.innerHTML = blanksToFill.join(" ");
 
 function isLetter(str) {
@@ -58,7 +58,7 @@ function dibujarEspacios(banda){
         if(isLetter(banda[i])){
             espacios.push('__');
         }else{
-            espacios.push('[ ]');
+            espacios.push('&nbsp');
         }
     }
     //console.log(espacios);
@@ -90,7 +90,7 @@ function hangman(char){
 
     // prints how the word is forming
     console.log(blanksToFill);
-    blanks.textContent =  blanksToFill.join(" ");
+    blanks.innerHTML =  blanksToFill.join(" ");
     //
     //console.log(letrasCorrectas);
     return letrasCorrectas;
