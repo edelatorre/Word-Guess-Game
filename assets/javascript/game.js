@@ -58,7 +58,8 @@ function dibujarEspacios(banda){
         if(isLetter(banda[i])){
             espacios.push('__');
         }else{
-            espacios.push('&nbsp');
+            espacios.push('[ ]');
+            //espacios.push('&blank;');
         }
     }
     //console.log(espacios);
@@ -122,13 +123,13 @@ document.onkeyup = function(event) {
 
 
    if((10-(letters.length-letrasCorrectas)) === 0){
-        result.innerHTML = "<h1>LOSER</h1><h4>Click another key to restart</h4>";
+        result.innerHTML = "<h1>LOSER</h1><h4>Press [Enter] to play again!</h4>";
         result.style.background = "red";
         reset(0,1);
    }
 
    if(blanksToFill.indexOf('__')<0){
-        result.innerHTML = "<h1>YOU WON</h1><h4>Click another key to restart</h4>";
+        result.innerHTML = "<h1>YOU WON</h1><h4>Press [Enter] to play again!</h4>";
         result.style.background = "blue";       
         console.log("YOU WON");
         reset(1,0);
